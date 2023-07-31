@@ -326,30 +326,42 @@
 
     </div>
 
-    <script>
-        // Get the navigation menu and the navbar toggler button
-        const navMenu = document.getElementById("navbarNav");
-        const navbarToggler = document.querySelector(".navbar-toggler");
+  <script>
+  // Get the navigation menu and the navbar toggler button
+  const navMenu = document.getElementById("navbarNav");
+  const navbarToggler = document.querySelector(".navbar-toggler");
 
-        // Function to toggle the navigation menu and close it when a link is clicked
-        function toggleNavMenu() {
-            navMenu.classList.toggle("show");
-        }
+  // Function to toggle the navigation menu and close it when a link is clicked
+  function toggleNavMenu() {
+    navMenu.classList.toggle("show");
+  }
 
-        // Function to close the navigation menu when a link is clicked
-        function closeNavMenu() {
-            if (navMenu.classList.contains("show")) {
-                navMenu.classList.remove("show");
-            }
-        }
-        navbarToggler.addEventListener("click", toggleNavMenu);
+  // Function to close the navigation menu when a link is clicked
+  function closeNavMenu() {
+    if (navMenu.classList.contains("show")) {
+      navMenu.classList.remove("show");
+    }
+  }
 
-        // click event listeners to navigation links
-        const navLinks = document.querySelectorAll(".nav-link");
-        navLinks.forEach((link) => {
-            link.addEventListener("click", closeNavMenu);
-        });
-    </script>
+  // Function to close the navigation menu when clicking anywhere outside the navigation area
+  function closeNavOnOutsideClick(event) {
+    if (!navMenu.contains(event.target) && !navbarToggler.contains(event.target)) {
+      closeNavMenu();
+    }
+  }
+
+  navbarToggler.addEventListener("click", toggleNavMenu);
+
+  // Add click event listeners to navigation links
+  const navLinks = document.querySelectorAll(".nav-link");
+  navLinks.forEach((link) => {
+    link.addEventListener("click", closeNavMenu);
+  });
+
+  // Add a click event listener to the document to close the navigation menu on outside click
+  document.addEventListener("click", closeNavOnOutsideClick);
+</script>
+
 
 </body>
 
