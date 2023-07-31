@@ -336,7 +336,7 @@
     navMenu.classList.toggle("show");
   }
 
-  // Function to close the navigation menu when a link is clicked
+  // Function to close the navigation menu
   function closeNavMenu() {
     if (navMenu.classList.contains("show")) {
       navMenu.classList.remove("show");
@@ -350,7 +350,16 @@
     }
   }
 
-  navbarToggler.addEventListener("click", toggleNavMenu);
+  // Function to handle the navbar toggler click
+  function handleNavbarTogglerClick() {
+    toggleNavMenu();
+    // If the navigation menu is already open and the toggler is clicked, close the menu
+    if (navMenu.classList.contains("show")) {
+      closeNavMenu();
+    }
+  }
+
+  navbarToggler.addEventListener("click", handleNavbarTogglerClick);
 
   // Add click event listeners to navigation links
   const navLinks = document.querySelectorAll(".nav-link");
@@ -361,6 +370,7 @@
   // Add a click event listener to the document to close the navigation menu on outside click
   document.addEventListener("click", closeNavOnOutsideClick);
 </script>
+
 
 
 </body>
